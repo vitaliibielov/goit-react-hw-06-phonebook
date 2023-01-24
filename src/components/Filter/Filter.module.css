@@ -1,8 +1,14 @@
-.filterLabel {
+.title {
+  font-size: 36px;
+  margin-left: 60px;
+}
+
+.label {
   display: block;
   margin-left: 60px;
   /* border-bottom: 1px solid #000;
    */
+   font-weight: 500;
   margin-bottom: 20px;
 }
 
@@ -12,7 +18,7 @@
   font-weight: 500;
 }
 
-.filterInput {
+.input {
   display: block;
   width: 200px;
   height: 30px;

@@ -1,22 +1,22 @@
-.contactForm {
+.form {
   /* outline: solid 1px black; */
   margin-bottom: 40px;
   margin-left: 60px;
 }
 
-.contactFormText {
+.formControl label {
   font-weight: 500;
   margin-bottom: 5px;
 }
 
-.contactFormInput {
+.formControl input {
   display: block;
   width: 200px;
   height: 30px;
   margin-bottom: 10px;
 }
 
-.contactFormBtn {
+.form button {
   display: block;
   width: 200px;
   padding: 10px;

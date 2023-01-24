@@ -1,35 +1,35 @@
-import css from './ContactList.module.css';
+import styles from "./ContactList.module.css"
+import { useSelector, useDispatch } from "react-redux"
+import { removeContact, getContacts } from "../../redux/slices/contactsSlice"
+import { getFilter } from "../../redux/slices/filterSlice"
 
-import PropTypes from 'prop-types';
+export default function ContactList() {
+	const contacts = useSelector(getContacts)
+	const filter = useSelector(getFilter)
+	const dispatch = useDispatch()
+	const deleteContact = (id) => {
+		return () => {
+			dispatch(removeContact(id))
+		}
+	}
 
-export const ContactList = ({ deleteContact, contacts }) => {
-  return (
-    <ul className={css.contactList}>
-      {contacts.map(contact => (
-        <li key={contact.id} className={css.contactItem}>
-          <div className={css.contactTextBlock}>
-            <p className={css.contactText}>{contact.name}</p>
-            <p className={css.contactText}>{contact.number}</p>
-          </div>
-          <button
-            className={css.contactBtn}
-            type="button"
-            onClick={() => deleteContact(contact.id)}
-          >
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      number: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-};
+	const normalizeValue = (value) => value.toLowerCase().trim()
+	const visibleContacts = contacts.filter((contact) => normalizeValue(contact.name).includes(normalizeValue(filter)))
+	return (
+		<>
+			<ul className={styles.list}>
+				{visibleContacts.map(({ id, name, number }) => (
+					<li className={styles.item} key={id}>
+            <div className={styles.contactTextBlock}>
+              <p className={styles.contactText}>{name}</p>
+              <p className={styles.contactText}>{number}</p>
+            </div>
+						<button className={styles.button} onClick={deleteContact(id)} type="button">
+							Delete
+						</button>
+					</li>
+				))}
+			</ul>
+		</>
+	)
+}
