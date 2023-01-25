@@ -1,7 +1,7 @@
 import styles from "./ContactList.module.css"
 import { useSelector, useDispatch } from "react-redux"
-import { removeContact, getContacts } from "../../redux/slices/contactsSlice"
-import { getFilter } from "../../redux/slices/filterSlice"
+import { removeContact, getContacts } from "../../redux/contacts/contactsSlice"
+import { getFilter } from "../../redux/filter/filterSlice"
 
 export default function ContactList() {
 	const contacts = useSelector(getContacts)
@@ -17,7 +17,8 @@ export default function ContactList() {
 	const visibleContacts = contacts.filter((contact) => normalizeValue(contact.name).includes(normalizeValue(filter)))
 	return (
 		<>
-			<ul className={styles.list}>
+			{visibleContacts.length > 0 ? (
+        <ul className={styles.list}>
 				{visibleContacts.map(({ id, name, number }) => (
 					<li className={styles.item} key={id}>
             <div className={styles.contactTextBlock}>
@@ -30,6 +31,9 @@ export default function ContactList() {
 					</li>
 				))}
 			</ul>
+      ) : (
+        <p className={styles.info}>There is no contacts in a Phone Book</p>
+      )}
 		</>
 	)
 }

@@ -8,6 +8,11 @@ export function App() {
 		<div className={styles.container}>
 			<ContactForm />
 			<Filter />
+      {/* {contacts.length > 0 ? (
+          <Filter />
+        ) : (
+          <p className={styles.info}>There is no contacts in a Phone Book</p>
+        )} */}
 			<ContactList />
 		</div>
 	)

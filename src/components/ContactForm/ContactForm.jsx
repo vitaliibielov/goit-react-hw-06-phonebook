@@ -1,6 +1,6 @@
 import styles from "./ContactForm.module.css"
 import { nanoid } from "nanoid"
-import { addContact, getContacts } from "../../redux/slices/contactsSlice"
+import { addContact, getContacts } from "../../redux/contacts/contactsSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { Notify } from "notiflix/build/notiflix-notify-aio"
 
